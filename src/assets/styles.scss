@@ -1,0 +1,113 @@
+$colors-light: (
+  text-primary: #222222,
+  text-secondary: #99A0AB,
+  text-accent: #3A83F1,
+  text-error: #FF3B30,
+  text-attention: #FB9130,
+  text-extraSuccess: #45BF78,
+  text-staticWhite: #FFFFFF,
+  text-staticBlack: #222222,
+
+  elements-accent: #3A83F1,
+  elements-secondary: #99A0AB,
+  elements-special: #DDDFE3,
+  elements-error: #FF3B30,
+  elements-attention: #FB9130,
+  elements-green: #44BF78,
+  elements-staticWhite: #FFFFFF,
+  elements-extraGrey: #546173,
+
+  background-basic: #FFFFFF,
+  background-additional: #F0F2F5,
+  background-selected: #EBF3FE,
+  background-accent: #3A83F1,
+  background-accentDisable: #7FABED,
+  background-accentPressed: #2E79EA,
+  background-extra: #546173,
+  background-attention: #FFEBEA,
+  background-systemClear: transparent,
+  background-cards: #FFFFFF,
+  background-modalView: rgba(0, 0, 0, 0.6),
+
+  shadow: #F0F2F5,
+);
+
+$colors-dark: (
+  text-primary: #E4E8EE,
+  text-secondary: #99A0AB,
+  text-accent: #5095FD,
+  text-error: #E7463E,
+  text-attention: #E7463E,
+  text-extraSuccess: #44BF78,
+  text-staticWhite: #FFFFFF,
+  text-staticBlack: #222222,
+
+  elements-accent: #3A83F1,
+  elements-secondary: #99A0AB,
+  elements-special: #62676F,
+  elements-error: #E7463E,
+  elements-attention: #FB9130,
+  elements-green: #44BF78,
+  elements-staticWhite: #FFFFFF,
+  elements-extraGrey: #ADB3BC,
+
+  background-basic: #0F1116,
+  background-additional: #1D2128,
+  background-selected: #343C48,
+  background-accent: #3A83F1,
+  background-accentDisable: #86A3CD,
+  background-accentPressed: #2E79EA,
+  background-extra: #ADB3BC,
+  background-attention: #5A0909,
+  background-systemClear: transparent,
+  background-cards: #1D2128,
+  background-modalView: rgba(0, 0, 0, 0.85),
+
+  shadow: #F0F2F5,
+);
+
+
+@function hexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
+@mixin generate_colors($colors) {
+  @each $color, $value in $colors {
+    @if $value == transparent {
+      --#{$color}: #{$value};
+    } @else if str-slice(#{$value}, 1, 3) == "rgb" {
+      --#{$color}: #{$value};
+    } @else if str-slice(#{$value}, 1, 1) == "#" {
+      --#{$color}: #{$value};
+    } @else {
+      --#{$color}: var(--#{$value});
+    }
+  }
+
+  @each $color, $value in $colors {
+    @if $value == transparent {
+      --RGB_#{$color}: rgba(255, 255, 255, 0);
+    } @else if str-slice(#{$value}, 1, 3) == "rgb" {
+      --RGB_#{$color}: #{$value};
+    } @else if str-slice(#{$value}, 1, 1) == "#" {
+      --RGB_#{$color}: #{hexToRGB($value)};
+    } @else {
+      --RGB_#{$color}: var(--#{$value});
+    }
+  }
+}
+
+:root {
+  @include generate_colors($colors-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include generate_colors($colors-dark);
+  }
+}
+
+body {
+  background-color: var(--background-basic);
+  color: var(--text-primary);
+}

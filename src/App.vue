@@ -2,9 +2,11 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/converter">Converter</router-link>
     </div>
-    <router-view/>
+    <div class="cointainer">
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -14,7 +16,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 #nav {
@@ -22,11 +24,18 @@
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--text-primary);
+    text-decoration: none;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: var(--text-extraSuccess);
+      border-bottom: 1px solid var(--text-extraSuccess);
     }
   }
+}
+
+.container {
+  width: 75%;
+  margin: 0 auto;
 }
 </style>
