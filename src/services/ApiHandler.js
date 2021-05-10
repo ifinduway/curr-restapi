@@ -40,4 +40,11 @@ export default class ApiHandler {
         .then((response) => resolve(response.data));
     });
   }
+
+  TopPairs(payload) {
+    return new Promise((resolve) => {
+      this.axios.get(`/data/top/pairs?fsym=${payload}`, this.config)
+        .then((response) => resolve(response.data));
+    });
+  }
 }

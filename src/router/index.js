@@ -14,6 +14,11 @@ const routes = [
     name: 'Converter',
     component: () => import('../views/Converter.vue'),
   },
+  {
+    path: '/pairs',
+    name: 'Pairs',
+    component: () => import('../views/Pairs.vue'),
+  },
 ];
 
 const router = new VueRouter({

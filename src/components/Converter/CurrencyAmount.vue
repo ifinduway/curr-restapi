@@ -19,7 +19,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions([
+    ...mapActions('converter', [
       'setAmount',
     ]),
     updateValue(value) {
@@ -27,7 +27,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters([
+    ...mapGetters('converter', [
       'isFilled',
     ]),
   },

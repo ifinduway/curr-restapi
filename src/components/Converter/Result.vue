@@ -16,10 +16,10 @@ export default {
     currencyUpdate,
   },
   computed: {
-    ...mapGetters([
+    ...mapGetters('converter', [
       'getResult',
     ]),
-    ...mapState([
+    ...mapState('converter', [
       'price',
       'symbols',
       'amount',

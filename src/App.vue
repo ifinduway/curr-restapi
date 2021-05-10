@@ -1,8 +1,9 @@
-<template>
+`<template>
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/converter">Converter</router-link>
+      <router-link to="/converter">Converter</router-link> |
+      <router-link to="/pairs">Top pairs</router-link>
     </div>
     <div class="cointainer">
       <router-view/>
@@ -10,8 +11,31 @@
   </div>
 </template>
 
+<script>
+import ApiHandler from '@/services/ApiHandler';
+import { mapActions } from 'vuex';
+
+const apiRequest = new ApiHandler();
+
+export default {
+  mounted() {
+    apiRequest.getCoinList().then((data) => this.setCurrencyList(Object.keys(data.Data)));
+  },
+
+  methods: {
+    ...mapActions('converter', [
+      'setCurrencyList',
+    ]),
+  },
+};
+</script>
+
 <style lang="scss">
 #app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,10 +56,5 @@
       border-bottom: 1px solid var(--text-extraSuccess);
     }
   }
-}
-
-.container {
-  width: 75%;
-  margin: 0 auto;
 }
 </style>

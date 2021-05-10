@@ -14,9 +14,6 @@ import { mapActions, mapState, mapGetters } from 'vuex';
 import CurrencyDropdown from '@/components/Converter/CurrencyDropdown.vue';
 import CurrencyAmount from '@/components/Converter/CurrencyAmount.vue';
 import Result from '@/components/Converter/Result.vue';
-import ApiHandler from '@/services/ApiHandler';
-
-const apiRequest = new ApiHandler();
 
 export default {
   components: {
@@ -25,10 +22,10 @@ export default {
     Result,
   },
   computed: {
-    ...mapGetters([
+    ...mapGetters('converter', [
       'getResult',
     ]),
-    ...mapState([
+    ...mapState('converter', [
       'currencyList',
       'fCurr',
       'tCurr',
@@ -38,16 +35,12 @@ export default {
     ]),
   },
   methods: {
-    ...mapActions([
+    ...mapActions('converter', [
       'setFromCurr',
       'setToCurr',
-      'setCurrencyList',
       'clearInterval',
       'resetStore',
     ]),
-  },
-  mounted() {
-    apiRequest.getCoinList().then((data) => this.setCurrencyList(Object.keys(data.Data)));
   },
   beforeDestroy() {
     if (this.interval) this.clearInterval();
