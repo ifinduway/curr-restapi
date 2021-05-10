@@ -11,6 +11,10 @@ export default new Vuex.Store({
     currencyList: [],
     fCurr: null,
     tCurr: null,
+    symbols: {
+      tCurr: null,
+      fCurr: null,
+    },
     amount: 1,
     price: null,
     interval: null,
@@ -29,7 +33,11 @@ export default new Vuex.Store({
       state.amount = payload;
     },
     setPrice(state, payload) {
-      state.price = payload[state.tCurr];
+      state.price = payload[state.fCurr][state.tCurr].PRICE;
+    },
+    setSymbols(state, payload) {
+      state.symbols.fCurr = payload.fCurr;
+      state.symbols.tCurr = payload.tCurr;
     },
     setInterval(state, payload) {
       state.interval = payload;
@@ -54,13 +62,18 @@ export default new Vuex.Store({
         if (state.interval) {
           commit('clearInterval');
         }
-        apiRequest.singleSymbolPrice({ fsym: state.fCurr, tsym: state.tCurr })
-          .then((data) => commit('setPrice', data));
+        apiRequest.multipleSymbolsFullData({ fsym: [state.fCurr], tsyms: [state.tCurr] })
+          .then((data) => {
+            commit('setPrice', data.RAW);
+            const symbs = {
+              fCurr: data.DISPLAY[state.fCurr][state.tCurr].FROMSYMBOL,
+              tCurr: data.DISPLAY[state.fCurr][state.tCurr].TOSYMBOL,
+            };
+            commit('setSymbols', symbs);
+          });
         commit('setInterval', setInterval(() => {
-          apiRequest.singleSymbolPrice({ fsym: state.fCurr, tsym: state.tCurr })
-            .then((data) => {
-              commit('setPrice', data);
-            });
+          apiRequest.multipleSymbolsFullData({ fsym: [state.fCurr], tsyms: [state.tCurr] })
+            .then((data) => commit('setPrice', data.RAW));
         }, 3000));
       }
     },
@@ -70,17 +83,27 @@ export default new Vuex.Store({
         if (state.interval) {
           commit('clearInterval');
         }
-        apiRequest.singleSymbolPrice({ fsym: state.fCurr, tsym: state.tCurr })
-          .then((data) => commit('setPrice', data));
+        apiRequest.multipleSymbolsFullData({ fsym: [state.fCurr], tsyms: [state.tCurr] })
+          .then((data) => {
+            commit('setPrice', data.RAW);
+            const symbs = {
+              fCurr: data.DISPLAY[state.fCurr][state.tCurr].FROMSYMBOL,
+              tCurr: data.DISPLAY[state.fCurr][state.tCurr].TOSYMBOL,
+            };
+            commit('setSymbols', symbs);
+          });
         commit('setInterval', setInterval(() => {
-          apiRequest.singleSymbolPrice({ fsym: state.fCurr, tsym: state.tCurr })
+          apiRequest.multipleSymbolsFullData({ fsym: [state.fCurr], tsyms: [state.tCurr] })
             .then((data) => {
-              commit('setPrice', data);
+              commit('setPrice', data.RAW);
             });
         }, 3000));
       }
     },
-    setAmount({ state, getters, commit }, payload) {
+    setSymbols({ commit }, payload) {
+      commit('setSymbols', payload);
+    },
+    setAmount({ commit }, payload) {
       commit('setAmount', payload);
     },
     setPrice({ commit }, payload) {

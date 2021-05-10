@@ -1,8 +1,8 @@
 <template>
   <div v-if="price && amount > 0" class="result">
     <div>
-      <span>{{amount}} <small>{{fCurr}}</small></span>:
-      <span v-currencyUpdate="price">{{getResult}} <small>{{tCurr}}</small></span>
+      <span>{{amount}} <small>{{symbols.fCurr}}</small></span>:
+      <span v-currencyUpdate="price">{{getResult}} <small>{{symbols.tCurr}}</small></span>
     </div>
   </div>
 </template>
@@ -21,8 +21,7 @@ export default {
     ]),
     ...mapState([
       'price',
-      'fCurr',
-      'tCurr',
+      'symbols',
       'amount',
     ]),
   },
