@@ -47,4 +47,11 @@ export default class ApiHandler {
         .then((response) => resolve(response.data));
     });
   }
+
+  ListNews() {
+    return new Promise((resolve) => {
+      this.axios.get('/data/v2/news/?lang=EN', this.config)
+        .then((response) => resolve(response.data));
+    });
+  }
 }

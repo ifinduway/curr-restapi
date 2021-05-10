@@ -49,7 +49,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
   .form-group {
     display: flex;
     width: 100%;

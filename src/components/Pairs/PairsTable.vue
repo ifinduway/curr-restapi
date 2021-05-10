@@ -3,7 +3,7 @@
     <tr>
       <th>{{fCurr}}</th>
     </tr>
-    <tr v-for="pair in pairsList" :key="pair">
+    <tr v-for="(pair, i) in pairsList" :key="i">
       <td data-th="Top Currency">{{pair[0]}} - {{pair[1]}}</td>
     </tr>
   </table>

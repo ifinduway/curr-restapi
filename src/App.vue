@@ -3,7 +3,8 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/converter">Converter</router-link> |
-      <router-link to="/pairs">Top pairs</router-link>
+      <router-link to="/pairs">Top pairs</router-link> |
+      <router-link to="/news">News</router-link>
     </div>
     <div class="cointainer">
       <router-view/>
