@@ -21,14 +21,17 @@ export default {
 <style lang="scss">
   .card {
     max-width: 560px;
-    width: calc(100% - 40px);
+    width: calc(100% - 60px);
     border-radius: 10px;
     background-color: var(--background-additional);
     padding: 20px;
-    margin: 20px 0;
+    margin: 20px 10px;
 
     &-image {
       max-width: 150px;
+      border-radius: 100%;
+      border: 1px solid var(--elements-secondary);
+      width: 40%;
     }
 
     &-title {
@@ -39,6 +42,8 @@ export default {
 
     &-category {
       background-color: var(--background-selected);
+      font-style: italic;
+      font-size: 10px;
     }
   }
 </style>
