@@ -76,7 +76,7 @@ export default {
     toggle() {
       this.isOpened = !this.isOpened;
       if (this.isOpened) {
-        // this.$refs.dropdown.focus();
+        this.$refs.dropdown.focus();
       }
     },
   },
@@ -128,7 +128,6 @@ p.control {
   position: relative;
   display: flex;
   margin-bottom: 0.1rem;
-  box-shadow: 0px 1px 5px 1px rgba(119, 119, 119, 0.53);
   z-index: 10;
 }
 
@@ -151,7 +150,6 @@ ul.options-list {
   border-radius: 0 0 3px 3px;
   max-height: 150px;
   overflow-y: auto;
-  box-shadow: 0px 3px 6px 0px rgba(195, 195, 195, 0.76);
 }
 
 ul.options-list li {

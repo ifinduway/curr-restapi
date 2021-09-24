@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapActions, mapState, mapGetters } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import CurrencyDropdown from '@/components/Converter/CurrencyDropdown.vue';
 import CurrencyAmount from '@/components/Converter/CurrencyAmount.vue';
 import Result from '@/components/Converter/Result.vue';
@@ -22,9 +22,6 @@ export default {
     Result,
   },
   computed: {
-    ...mapGetters('converter', [
-      'getResult',
-    ]),
     ...mapState('converter', [
       'currencyList',
       'fCurr',

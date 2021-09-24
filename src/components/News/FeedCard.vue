@@ -4,6 +4,7 @@
       <div class="card-title">{{item.title}}</div>
       <span class="card-category">{{item.categories}}</span>
       <p clas="class-text">{{item.body}}</p>
+      <span>Источник: <a :href="item.url" target="_blank">{{item.url}}</a></span>
   </div>
 </template>
 
@@ -39,6 +40,16 @@ export default {
 
     &-category {
       background-color: var(--background-selected);
+    }
+
+    a {
+      font-size: 12px;
+      color: var(--text-primary);
+    }
+
+    span {
+      font-size: 12px;
+      color: var(--text-primary);
     }
   }
 </style>

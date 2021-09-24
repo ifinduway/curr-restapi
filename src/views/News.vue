@@ -15,7 +15,6 @@ export default {
   },
   mounted() {
     this.loadNewsList();
-    this.$nextTick(() => console.log(this.newsList));
   },
   computed: {
     ...mapState('news', [

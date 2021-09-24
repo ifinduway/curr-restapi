@@ -1,5 +1,3 @@
-// eslint-disable-next-line no-unused-vars
-
 import axios from 'axios';
 
 const apiKey = 'e0e574dd9df5df0103086b8ce0f44e12a089b609dff68d32b71ab476d6c522d3';

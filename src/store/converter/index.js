@@ -115,7 +115,7 @@ export default {
     },
   },
   getters: {
-    getResult: (state) => (state.price ? state.price * state.amount : 'error'),
+    getResult: (state) => (state.price ? (state.price * state.amount).toLocaleString('currency', state.symbols.tCurr) : 'error'),
     isFilled: (state) => (state.fCurr && state.tCurr ? 1 : 0),
   },
 };
