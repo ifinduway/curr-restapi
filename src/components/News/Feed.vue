@@ -20,6 +20,10 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang="scss">
+.feed-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 </style>
